@@ -5,11 +5,11 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Getter
-public class ErrorResponseDto {
+public class WorkersServiceErrorResponseDto {
 
     private int code;
 
-    public ErrorResponseDto(int code) {
+    public WorkersServiceErrorResponseDto(int code) {
         this.code = code;
     }
 

@@ -5,7 +5,6 @@ import lombok.extern.slf4j.Slf4j;
 import model.Worker;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -13,9 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class WorkersController implements WorkersApi {
 
     public ResponseEntity<Worker> getWorkerById(Long workerId) {
-        if (workerId >= 2) {
 
-        }
         Worker worker  = new Worker();
         worker.setId(workerId);
         worker.setName("Anmar Hammadi");
@@ -24,8 +21,5 @@ public class WorkersController implements WorkersApi {
         return new ResponseEntity<>(worker, HttpStatus.OK);
     }
 
-//    @ExceptionHandler(RuntimeException.class)
-//    public String handleRuntimeException(){
-//        return "handled RuntimeException from WorkersController";
-//    }
+
 }
