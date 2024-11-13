@@ -1,6 +1,6 @@
 package com.anyatech.workers_service;
 
-import com.anyatech.workers_service.exception.ReasonCode;
+import com.anyatech.workers_service.exception.ErrorReasonCode;
 import com.anyatech.workers_service.exception.WorkersApiException;
 import com.anyatech.workers_service.exception.WorkersServiceErrorResponseDto;
 import lombok.extern.slf4j.Slf4j;
@@ -21,12 +21,12 @@ public class WorkersControllerAdvice {
         WorkersServiceErrorResponseDto errorResponseDto = null;
 
         if (exception instanceof MethodArgumentTypeMismatchException){
-            errorResponseDto = new WorkersServiceErrorResponseDto(ReasonCode.METHOD_ARG_TYPE_MISMATCH.getCode());
+            errorResponseDto = new WorkersServiceErrorResponseDto(ErrorReasonCode.METHOD_ARG_TYPE_MISMATCH.getCode());
             throw new WorkersApiException();
             //return new ResponseEntity<>(errorResponseDto, HttpStatus.BAD_REQUEST);
         }
 
-        errorResponseDto = new WorkersServiceErrorResponseDto(ReasonCode.INTERNAL_SERVER_ERROR.getCode());
+        errorResponseDto = new WorkersServiceErrorResponseDto(ErrorReasonCode.INTERNAL_SERVER_ERROR.getCode());
         return new ResponseEntity<>(errorResponseDto,HttpStatus.INTERNAL_SERVER_ERROR);
 
     }

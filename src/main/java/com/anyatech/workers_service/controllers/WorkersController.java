@@ -1,9 +1,11 @@
 package com.anyatech.workers_service.controllers;
 
 import api.WorkersApi;
+import com.anyatech.workers_service.services.WorkersService;
 import lombok.extern.slf4j.Slf4j;
 import model.Worker;
-import org.springframework.http.HttpStatus;
+import model.Workers;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -11,14 +13,19 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 public class WorkersController implements WorkersApi {
 
-    public ResponseEntity<Worker> getWorkerById(Long workerId) {
+    private WorkersService workersServiceImpl;
 
-        Worker worker  = new Worker();
-        worker.setId(workerId);
-        worker.setName("Anmar Hammadi");
-        worker.setStatus(Worker.StatusEnum.ACTIVE);
+    public WorkersController(@Autowired WorkersService workersServiceImpl){
+        this.workersServiceImpl = workersServiceImpl;
+    }
 
-        return new ResponseEntity<>(worker, HttpStatus.OK);
+
+    public ResponseEntity<Worker> getWorkerById(Long id) {
+        return this.workersServiceImpl.getWorkerById(id);
+    }
+
+    public ResponseEntity<Workers> getWorkers() {
+        return this.workersServiceImpl.getWorkers();
     }
 
 

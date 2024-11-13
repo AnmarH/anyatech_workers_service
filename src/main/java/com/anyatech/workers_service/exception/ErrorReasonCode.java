@@ -3,7 +3,7 @@ package com.anyatech.workers_service.exception;
 import lombok.Getter;
 
 @Getter
-public enum ReasonCode {
+public enum ErrorReasonCode {
 
     METHOD_ARG_TYPE_MISMATCH(1001,
             "The variable type provided does not match the method argument type, " +
@@ -14,7 +14,7 @@ public enum ReasonCode {
     private final int code;
     private final String description;
 
-    ReasonCode(int code, String description) {
+    ErrorReasonCode(int code, String description) {
         this.code = code;
         this.description = description;
     }
