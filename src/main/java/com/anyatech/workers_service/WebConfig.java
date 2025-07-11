@@ -1,4 +1,5 @@
-package com.anyatech.worker_service
+package com.anyatech.worker_service;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
