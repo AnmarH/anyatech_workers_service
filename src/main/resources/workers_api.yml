@@ -5,6 +5,19 @@ info:
     API to create, update and delete workers. A worker resource represents any employee, contractor or any kind of human capital.
   version: 1.0.0
 paths:
+  /workers/status:
+    get:
+      tags:
+        - status
+      operationId: getWorkersStatus
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkersStatus'
+
   /workers:
     get:
       tags:
@@ -43,6 +56,14 @@ paths:
           description: Worker not found
 components:
   schemas:
+    WorkersStatus:
+      required:
+        - isActiveFullTimePresent
+      type: object
+      properties:
+        isActiveFullTimePresent:
+          type: boolean
+          description: Indicates if at least one active full time worker is in talent pool
     Worker:
       required:
         - id
@@ -54,7 +75,17 @@ components:
           example: 18347239
         name:
           type: string
-          example: full time, contractor, manager
+          example: first name last name
+        income:
+          type: integer
+          description: The annual income for the worker
+        type:
+          type: string
+          description: worker type i.e. full time, contractor, intern
+          enum:
+            - full time
+            - contractor
+            - intern
         status:
           type: string
           description: worker status
@@ -68,3 +99,4 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Worker'
+          uniqueItems: true
